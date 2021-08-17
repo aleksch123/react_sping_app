@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 
+import net.javaguides.springboot.model.Domain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.javaguides.springboot.exception.ResourceNotFoundException;
-import net.javaguides.springboot.model.Employee;
-import net.javaguides.springboot.repository.EmployeeRepository;
+import net.javaguides.springboot.repository.DomainRepository;
 
 
 import org.springframework.web.cors.CorsConfiguration;
@@ -34,10 +34,10 @@ import org.springframework.web.filter.CorsFilter;
 @RequestMapping("/api/v1/")
 
 
-public class EmployeeController {
+public class DomainController {
 
 	@Autowired
-	private EmployeeRepository employeeRepository;
+	private DomainRepository  domainRepository;
 
 	@Bean
 	public CorsFilter corsFilter() {
@@ -56,48 +56,45 @@ public class EmployeeController {
 		return new CorsFilter(source);
 	}
 
-	// get all employees
-	@GetMapping("/employees")
-	public List<Employee> getAllEmployees(){
-		return employeeRepository.findAll();
+	// get all domains
+	@GetMapping("/domains")
+	public List<Domain> getAllDomains(){return domainRepository.findAll();
 	}
 
-	// create employee rest api
-	@PostMapping("/employees")
-	public Employee createEmployee(@RequestBody Employee employee) {
-		return employeeRepository.save(employee);
+	// create domains rest api
+	@PostMapping("/domains")
+	public Domain createDomain(@RequestBody Domain domain) {return domainRepository.save(domain);
 	}
 
-	// get employee by id rest api
-	@GetMapping("/employees/{id}")
-	public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-		Employee employee = employeeRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
+	// get domain by id rest api
+	@GetMapping("/domains/{id}")
+	public ResponseEntity<Domain> getDomainById(@PathVariable Long id) {
+		Domain employee = domainRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Domain not exist with id :" + id));
 		return ResponseEntity.ok(employee);
 	}
 
-	// update employee rest api
+	// update domain rest api
 
-	@PutMapping("/employees/{id}")
-	public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employeeDetails){
-		Employee employee = employeeRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
+	@PutMapping("/domains/{id}")
+	public ResponseEntity<Domain> updateDomain(@PathVariable Long id, @RequestBody Domain domainDetails){
+		Domain employee = domainRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Domain not exist with id :" + id));
 
-		employee.setFirstName(employeeDetails.getFirstName());
-		employee.setLastName(employeeDetails.getLastName());
-		employee.setEmailId(employeeDetails.getEmailId());
+		employee.setDomainUrl(domainDetails.getDomainUrl());
+		employee.setDomainNote(domainDetails.getDomainNote());
 
-		Employee updatedEmployee = employeeRepository.save(employee);
-		return ResponseEntity.ok(updatedEmployee);
+		Domain updatedDomain = domainRepository.save(employee);
+		return ResponseEntity.ok(updatedDomain);
 	}
 
-	// delete employee rest api
-	@DeleteMapping("/employees/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id){
-		Employee employee = employeeRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
+	// delete domain rest api
+	@DeleteMapping("/domains/{id}")
+	public ResponseEntity<Map<String, Boolean>> deleteDomain(@PathVariable Long id){
+		Domain employee = domainRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Domain not exist with id :" + id));
 
-		employeeRepository.delete(employee);
+		domainRepository.delete(employee);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import EmployeeService from '../services/EmployeeService'
+import DomainService from '../services/DomainService'
 
-class ViewEmployeeComponent extends Component {
+class ViewDomainComponent extends Component {
     constructor(props) {
         super(props)
 
@@ -12,8 +12,8 @@ class ViewEmployeeComponent extends Component {
     }
 
     componentDidMount(){
-        EmployeeService.getEmployeeById(this.state.id).then( res => {
-            this.setState({employee: res.data});
+        DomainService.getDomainById(this.state.id).then( res => {
+            this.setState({domain: res.data});
         })
     }
 
@@ -22,20 +22,16 @@ class ViewEmployeeComponent extends Component {
             <div>
                 <br></br>
                 <div className = "card col-md-6 offset-md-3">
-                    <h3 className = "text-center"> View Employee Details</h3>
+                    <h3 className = "text-center"> View Domain Details</h3>
                     <div className = "card-body">
                         <div className = "row">
-                            <label> Employee First Name: </label>
-                            <div> { this.state.employee.firstName }</div>
+                            <label> Domain Url: </label>
+                            <div> { this.state.domain.domainUrl }</div>
                         </div>
                         <div className = "row">
-                            <label> Employee Last Name: </label>
-                            <div> { this.state.employee.lastName }</div>
-                        </div>
-                        <div className = "row">
-                            <label> Employee Email ID: </label>
-                            <div> { this.state.employee.emailId }</div>
-                        </div>
+                            <label> Domain Note: </label>
+                            <div> { this.state.domain.domainNote }</div>
+                        </div>                        
                     </div>
 
                 </div>
@@ -44,4 +40,4 @@ class ViewEmployeeComponent extends Component {
     }
 }
 
-export default ViewEmployeeComponent
+export default ViewDomainComponent

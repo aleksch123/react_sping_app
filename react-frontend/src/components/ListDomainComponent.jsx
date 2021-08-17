@@ -49,16 +49,16 @@ class ListDomainComponent extends Component {
                             <thead>
                                 <tr>
                                     <th> Domain Url</th>
-                                    <th> Domain Note</th>
+                                    <th> Domain Note</th>                                    
                                     <th> Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
                                     this.state.domains.map(
-                                        domain =>
+                                        domain => 
                                         <tr key = {domain.id}>
-                                             <td> { domain.domainUrl} </td>
+                                             <td> { domain.domainUrl} </td>   
                                              <td> {domain.domainNote}</td>
                                              <td>
                                                  <button onClick={ () => this.editDomain(domain.id)} className="btn btn-info">Update </button>
@@ -78,4 +78,4 @@ class ListDomainComponent extends Component {
     }
 }
 
-export default ListDomainComponent
+export default ListDomainComponent;

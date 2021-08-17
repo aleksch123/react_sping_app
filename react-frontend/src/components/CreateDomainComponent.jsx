@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EmployeeService from '../services/DomainService';
+
 
 class CreateDomainComponent extends Component {
     constructor(props) {
@@ -24,6 +24,7 @@ class CreateDomainComponent extends Component {
         if(this.state.id === '_add'){
             return
         }else{
+            
             DomainService.getDomainById(this.state.id).then( (res) =>{
                 let domain = res.data;
                 this.setState({domainUrl: domain.domainUrl,

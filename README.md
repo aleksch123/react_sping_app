@@ -9,7 +9,7 @@
 => https://youtu.be/k5KnAhkRzh4
 #### ReactJS + Spring Boot CRUD Full Stack App - 4 - Creating JPA Entity + Repository
 => https://youtu.be/FZwLlaMmers
-#### ReactJS + Spring Boot CRUD Full Stack App - 5 - Creating List Employee REST API
+#### ReactJS + Spring Boot CRUD Full Stack App - 5 - Creating List Domain REST API
 => https://youtu.be/L57OlxU0fEE
 #### ReactJS + Spring Boot CRUD Full Stack App - 6 - Creating React App
 => https://youtu.be/tUXiPfNKUWE

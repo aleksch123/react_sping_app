@@ -69,32 +69,32 @@ public class DomainController {
 	// get domain by id rest api
 	@GetMapping("/domains/{id}")
 	public ResponseEntity<Domain> getDomainById(@PathVariable Long id) {
-		Domain employee = domainRepository.findById(id)
+		Domain domain = domainRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Domain not exist with id :" + id));
-		return ResponseEntity.ok(employee);
+		return ResponseEntity.ok(domain);
 	}
 
 	// update domain rest api
 
 	@PutMapping("/domains/{id}")
 	public ResponseEntity<Domain> updateDomain(@PathVariable Long id, @RequestBody Domain domainDetails){
-		Domain employee = domainRepository.findById(id)
+		Domain domain = domainRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Domain not exist with id :" + id));
 
-		employee.setDomainUrl(domainDetails.getDomainUrl());
-		employee.setDomainNote(domainDetails.getDomainNote());
+		domain.setDomainUrl(domainDetails.getDomainUrl());
+		domain.setDomainNote(domainDetails.getDomainNote());
 
-		Domain updatedDomain = domainRepository.save(employee);
+		Domain updatedDomain = domainRepository.save(domain);
 		return ResponseEntity.ok(updatedDomain);
 	}
 
 	// delete domain rest api
 	@DeleteMapping("/domains/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteDomain(@PathVariable Long id){
-		Domain employee = domainRepository.findById(id)
+		Domain domain = domainRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Domain not exist with id :" + id));
 
-		domainRepository.delete(employee);
+		domainRepository.delete(domain);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);

@@ -19,10 +19,10 @@ class ListEmployeeComponent extends Component {
         });
     }
     viewEmployee(id){
-        this.props.history.push(`/view-employee/${id}`);
+        this.props.history.push(`/view-domain/${id}`);
     }
     editEmployee(id){
-        this.props.history.push(`/add-employee/${id}`);
+        this.props.history.push(`/add-domain/${id}`);
     }
 
     componentDidMount(){
@@ -32,15 +32,15 @@ class ListEmployeeComponent extends Component {
     }
 
     addEmployee(){
-        this.props.history.push('/add-employee/_add');
+        this.props.history.push('/add-domain/_add');
     }
 
     render() {
         return (
             <div>
-                 <h2 className="text-center">Employees List</h2>
+                 <h2 className="text-center">Domain List</h2>
                  <div className = "row">
-                    <button className="btn btn-primary" onClick={this.addEmployee}> Add Employee</button>
+                    <button className="btn btn-primary" onClick={this.addEmployee}> Add Domain</button>
                  </div>
                  <br></br>
                  <div className = "row">
@@ -48,9 +48,8 @@ class ListEmployeeComponent extends Component {
 
                             <thead>
                                 <tr>
-                                    <th> Employee First Name</th>
-                                    <th> Employee Last Name</th>
-                                    <th> Employee Email Id</th>
+                                    <th> Domain Name</th>
+                                    <th> Domain Note</th>                                    
                                     <th> Actions</th>
                                 </tr>
                             </thead>
@@ -60,8 +59,7 @@ class ListEmployeeComponent extends Component {
                                         employee => 
                                         <tr key = {employee.id}>
                                              <td> { employee.firstName} </td>   
-                                             <td> {employee.lastName}</td>
-                                             <td> {employee.emailId}</td>
+                                             <td> {employee.lastName}</td>                                             
                                              <td>
                                                  <button onClick={ () => this.editEmployee(employee.id)} className="btn btn-info">Update </button>
                                                  <button style={{marginLeft: "10px"}} onClick={ () => this.deleteEmployee(employee.id)} className="btn btn-danger">Delete </button>

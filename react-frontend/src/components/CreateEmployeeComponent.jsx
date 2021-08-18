@@ -36,16 +36,16 @@ class CreateEmployeeComponent extends Component {
     saveOrUpdateEmployee = (e) => {
         e.preventDefault();
         let employee = {firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId};
-        console.log('employee => ' + JSON.stringify(employee));
+        console.log('domain => ' + JSON.stringify(employee));
 
         // step 5
         if(this.state.id === '_add'){
             EmployeeService.createEmployee(employee).then(res =>{
-                this.props.history.push('/employees');
+                this.props.history.push('/domains');
             });
         }else{
             EmployeeService.updateEmployee(employee, this.state.id).then( res => {
-                this.props.history.push('/employees');
+                this.props.history.push('/domains');
             });
         }
     }
@@ -63,14 +63,14 @@ class CreateEmployeeComponent extends Component {
     }
 
     cancel(){
-        this.props.history.push('/employees');
+        this.props.history.push('/domains');
     }
 
     getTitle(){
         if(this.state.id === '_add'){
-            return <h3 className="text-center">Add Employee</h3>
+            return <h3 className="text-center">Add Domain</h3>
         }else{
-            return <h3 className="text-center">Update Employee</h3>
+            return <h3 className="text-center">Update Domain</h3>
         }
     }
     render() {
@@ -86,20 +86,15 @@ class CreateEmployeeComponent extends Component {
                                 <div className = "card-body">
                                     <form>
                                         <div className = "form-group">
-                                            <label> First Name: </label>
-                                            <input placeholder="First Name" name="firstName" className="form-control" 
+                                            <label> Domain Name: </label>
+                                            <input placeholder="Domain Name" name="firstName" className="form-control" 
                                                 value={this.state.firstName} onChange={this.changeFirstNameHandler}/>
                                         </div>
                                         <div className = "form-group">
-                                            <label> Last Name: </label>
-                                            <input placeholder="Last Name" name="lastName" className="form-control" 
+                                            <label> Domain Note: </label>
+                                            <input placeholder="Domain Note" name="lastName" className="form-control" 
                                                 value={this.state.lastName} onChange={this.changeLastNameHandler}/>
-                                        </div>
-                                        <div className = "form-group">
-                                            <label> Email Id: </label>
-                                            <input placeholder="Email Address" name="emailId" className="form-control" 
-                                                value={this.state.emailId} onChange={this.changeEmailHandler}/>
-                                        </div>
+                                        </div>                                     
 
                                         <button className="btn btn-success" onClick={this.saveOrUpdateEmployee}>Save</button>
                                         <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>

@@ -57,19 +57,19 @@ public class EmployeeController {
 	}
 
 	// get all employees
-	@GetMapping("/employees")
+	@GetMapping("/domains")
 	public List<Employee> getAllEmployees(){
 		return employeeRepository.findAll();
 	}
 
 	// create employee rest api
-	@PostMapping("/employees")
+	@PostMapping("/domains")
 	public Employee createEmployee(@RequestBody Employee employee) {
 		return employeeRepository.save(employee);
 	}
 
 	// get employee by id rest api
-	@GetMapping("/employees/{id}")
+	@GetMapping("/domains/{id}")
 	public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
 		Employee employee = employeeRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
@@ -78,7 +78,7 @@ public class EmployeeController {
 
 	// update employee rest api
 
-	@PutMapping("/employees/{id}")
+	@PutMapping("/domains/{id}")
 	public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employeeDetails){
 		Employee employee = employeeRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
@@ -92,7 +92,7 @@ public class EmployeeController {
 	}
 
 	// delete employee rest api
-	@DeleteMapping("/employees/{id}")
+	@DeleteMapping("/domains/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id){
 		Employee employee = employeeRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
